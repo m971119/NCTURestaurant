@@ -1,0 +1,56 @@
+.error{
+	font-family: Courier;
+	color:red;}
+
+body{
+	margin: 50px 100px 50px 100px;
+	font-family: "微軟正黑體";
+	font-size:18px;
+ }
+.radio{
+	font-family: Bahnschrift SemiBold,微軟正黑體;
+	font-size:18px;
+}
+h1{
+	font-family:Bahnschrift SemiBold,Courier,微軟正黑體;
+	text-align:center;
+	font-size:50px;
+}
+h2{
+	font-family:Bahnschrift SemiBold,Courier,微軟正黑體;
+	text-align:center;
+	font-size:30px;
+}
+input[type=text],input[type=password], select {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type="radio"]{
+	font-size:40px;
+}
+input[type=submit],button {
+	font-family: "微軟正黑體";
+	font-size:20px;
+    width: 100%;
+    background-color: #5c8a8a;
+    color: white;
+    padding: 15px 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+}
+input[type=submit]:hover,button:hover {
+    background-color: #75a3a3;
+}
+
+div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
