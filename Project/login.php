@@ -9,6 +9,8 @@
 <script>
 
 	function checkform(){
+		
+		
 		//evt.preventDefault();
 		var myForm = document.loginform;
 		var condition = true;
