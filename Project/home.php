@@ -70,7 +70,62 @@
 <!-- 讓我看看餐廳 Container -->
 <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="讓我看看餐廳">
   <div class="w3-content">
-  
+  </div>
+
+  <!--<h1 class="w3-center w3-jumbo" style="margin-bottom:64px">隨機挑餐廳</h1>
+  <div class="w3-row w3-center w3-border w3-border-dark-grey">
+      <a href="javascript:void(0)" onclick="open隨機(event, '一餐');" id="youLink">
+        <div class="w3-col s4 tablink w3-padding-large w3-black w3-hover-blue">一餐</div>
+      </a>
+      <a href="javascript:void(0)" onclick="open隨機(event, '二餐');">
+        <div class="w3-col s4 tablink w3-padding-large w3-black w3-hover-blue">二餐</div>
+      </a>
+      <a href="javascript:void(0)" onclick="open隨機(event, '女二');">
+        <div class="w3-col s4 tablink w3-padding-large w3-black w3-hover-blue">女二</div>
+      </a>
+  </div>
+    <div id="一餐" class="w3-container 隨機 w3-padding-32 w3-white">
+    <form  method="post">
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "1234";
+    $dbname = "group9_db";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    mysqli_query($conn, "SET NAMES 'UTF8'");
+	
+    //抽一餐餐廳
+    $sql ="SELECT rid,rname FROM restaurant WHERE rlocate=1";
+    $result = $conn->query($sql);
+    if($result->num_rows > 0){
+        //echo "<h2>拿到資料</h2>";
+		$random = (rand()% 6)+1;
+		$random = $random + 100;
+		$varr=$_POST['display'];
+        while($row = $result->fetch_row()){//fetch_assoc():把傳出的資料分割好放入row這個array中
+              //localStorage帳號名稱及密碼
+              $rnum = $row[0];
+              $name = $row[1];
+              //console.log('rnum = '+rnum+' name = '+name);
+			
+              //$link="restaurant_info.php";
+			if($random == $rnum && isset($varr)){
+            echo "選到餐廳：$name<hr>";
+			}
+        }
+    }
+    else{
+      echo "<h2>資料庫連接失敗</h2>";
+    }
+    ?>
+	
+	  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <input type="submit" id="display" name="display" value="換餐廳"><br /><br />
+    </form>
+  </form>
+</div>-->
+
     <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Restaurants</h1>
 
 	
@@ -197,9 +252,7 @@
 	  
 	</form>
     </div><br>
-
-  </div>
-</div>
+    </div>
 
 <script>
 // Tabbed 讓我看看餐廳
