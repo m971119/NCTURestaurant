@@ -90,7 +90,6 @@
 <div id="一餐" class="w3-container 讓我看看餐廳 w3-padding-32 w3-white">
 		
 	<form action="info2.php" method="post">
-	
 	<?php
     $servername = "localhost";
     $username = "root";
