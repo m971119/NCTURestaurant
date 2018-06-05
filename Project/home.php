@@ -87,11 +87,10 @@
       </a>
     </div>
 
-    <div id="一餐" class="w3-container 讓我看看餐廳 w3-padding-32 w3-white">
+<div id="一餐" class="w3-container 讓我看看餐廳 w3-padding-32 w3-white">
 		
-	<form action="restaurant_info.php" method="post">
-	
-  <?php
+	<form action="info2.php" method="post">
+	<?php
     $servername = "localhost";
     $username = "root";
     $password = "1234";
@@ -115,7 +114,23 @@
               <input type=\"submit\" name=$rnum class=\"button1\" value=\"$name\">
                 <hr>
                 ";
-      
+        }
+    }
+    else{
+      echo "<h2>資料庫連接失敗</h2>";
+    }
+//隨機選餐廳
+	$result = $conn->query($sql);
+    if($result->num_rows > 0){
+        //echo "<h2>拿到資料</h2>";
+		$random = (rand()% 6)+1;
+		$random = $random + 100;
+        while($row = $result->fetch_row()){//fetch_assoc():把傳出的資料分割好放入row這個array中
+              //localStorage帳號名稱及密碼
+              $rnum = $row[0];
+			if($random == $rnum){
+				echo "<input style=\"background-color:#005c99;margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%\" type=\"submit\" name=$rnum value=\"不知道吃什麼？點我！\" class=\"button1\"> ";
+			}
         }
     }
     else{
@@ -123,41 +138,10 @@
     }
 	?>
 	</form>
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-	<?php
-//隨機選餐廳
-	//$sql ="SELECT rid,rname FROM restaurant WHERE rlocate=1";
-    $result = $conn->query($sql);
-    if($result->num_rows > 0){
-        //echo "<h2>拿到資料</h2>";
-		$random = (rand()% 6)+1;
-		$random = $random + 100;
-		$varr=$_POST['display'];
-        while($row = $result->fetch_row()){//fetch_assoc():把傳出的資料分割好放入row這個array中
-              //localStorage帳號名稱及密碼
-              $rnum = $row[0];
-              $name = $row[1];
-              //console.log('rnum = '+rnum+' name = '+name);
-			
-              //$link="restaurant_info.php";
-			if($random == $rnum && isset($varr)){
-            echo "選到餐廳：$name
-			<input type=\"submit\" id=\"display\" name=\"display\" value=\"我想再換一個\" ><br />
-			";
-			}
-        }
-    }
-    else{
-      echo "<h2>資料庫連接失敗</h2>";
-    }
-    ?>
-	
-    
-    </form>
 </div>
 
-    <div id="二餐" class="w3-container 讓我看看餐廳 w3-padding-32 w3-white">
-	<form action="restaurant_info.php" method="post">
+<div id="二餐" class="w3-container 讓我看看餐廳 w3-padding-32 w3-white">
+	<form action="info2.php" method="post">
   <?php
     $servername = "localhost";
     $username = "root";
@@ -188,13 +172,30 @@
     else{
       echo "<h2>資料庫連接失敗</h2>";
     }
+//隨機選餐廳
+	$result = $conn->query($sql);
+    if($result->num_rows > 0){
+        //echo "<h2>拿到資料</h2>";
+		$random = (rand()% 15)+1;
+		$random = $random + 200;
+        while($row = $result->fetch_row()){//fetch_assoc():把傳出的資料分割好放入row這個array中
+              //localStorage帳號名稱及密碼
+              $rnum = $row[0];
+			if($random == $rnum){
+				echo "<input style=\"background-color:#005c99;margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%\" type=\"submit\" name=$rnum value=\"不知道吃什麼？點我！\" class=\"button1\"> ";
+			}
+        }
+    }
+    else{
+      echo "<h2>資料庫連接失敗</h2>";
+    }
     ?>  
 	</form>
-    </div>
+</div>
 
 
-    <div id="女二" class="w3-container 讓我看看餐廳 w3-padding-32 w3-white">
-	<form action="restaurant_info.php" method="post">
+<div id="女二" class="w3-container 讓我看看餐廳 w3-padding-32 w3-white">
+	<form action="info2.php" method="post">
   <?php
     $servername = "localhost";
     $username = "root";
@@ -225,10 +226,28 @@
     else{
       echo "<h2>資料庫連接失敗</h2>";
     }
+	//隨機選餐廳
+	$result = $conn->query($sql);
+    if($result->num_rows > 0){
+        //echo "<h2>拿到資料</h2>";
+		$random = (rand()% 11)+1;
+		$random = $random + 300;
+        while($row = $result->fetch_row()){//fetch_assoc():把傳出的資料分割好放入row這個array中
+              //localStorage帳號名稱及密碼
+              $rnum = $row[0];
+			if($random == $rnum){
+				echo "<input style=\"background-color:#005c99;margin-left:auto;margin-right:auto;display:block;margin-top:0%;margin-bottom:0%\" type=\"submit\" name=$rnum value=\"不知道吃什麼？點我！\" class=\"button1\"> ";
+			}
+        }
+    }
+    else{
+      echo "<h2>資料庫連接失敗</h2>";
+    }
     ?>
 	  
 	</form>
-    </div><br>
+
+</div><br>
 </div>
 
 <script>
@@ -251,5 +270,4 @@ document.getElementById("myLink").click();
 
 </script>
 </body>
-</html>
 </html>
