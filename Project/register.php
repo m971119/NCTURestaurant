@@ -72,9 +72,10 @@
 			<label class="radio"><input type="radio" name="emngr" value="1">  店家</label>
 			<label class="radio"><input type="radio" name="emngr" value="0">  顧客</label>
 			<br>
-			<input type="submit" value="haaaaaaaa">
-			
+			<input type="submit" value="註冊">
+			<p  align="center">or</p>
 	</form>
+	<a href="home.php"><button>回到首頁</button></a>
 </div>
 </body>
 </html>

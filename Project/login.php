@@ -40,12 +40,12 @@
 	<input type="text" name="eacc"><br>
 	<label>密碼: </label><br>
 	<input type="password" name="epw"><br><br>
-	<input type="submit">
-
+	<input type="submit" value="登入">
+	<p  align="center">or</p>
 	</form>
-	<a href="register.php">
-	<button>註冊</button>
-	</a>
+	<a href="register.php"><button>註冊</button></a>
+	<a href="home.php"><button>回到首頁</button></a>
+	
 
 </div>
 

@@ -13,15 +13,55 @@
 </head>
 
 <body>
+<script>
+	//顯示登入與否
+	$(document).ready(function(){
+		var eacc = localStorage.getItem('eacc');
+		var emngr = localStorage.getItem('emngr');
+		console.log('eacc='+eacc);
+		console.log('emngr='+emngr);
+
+		if(eacc != "" && eacc != null){//登入中
+			document.getElementById("name").innerHTML = "Hello, "+eacc+"!";
+			$(".login").hide();		
+			$(".logout").show();
+			if(emngr == 0){
+				$(".elogin").show();
+				$(".mlogin").hide();
+			}
+			else{
+				$(".elogin").hide();
+				$(".mlogin").show();
+			}
+				
+			
+		}
+		else{//沒登入
+			$(".login").show();
+			$(".logout").hide();
+			$(".elogin").hide();
+			$(".mlogin").hide();
+		}
+	});
+	
+	function logout(){
+		localStorage.removeItem('eacc');
+	}
+	
+</script>
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top w3-hide-small">
   <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
     <a href="home.php" class="w3-bar-item w3-button"><button class="w3-button  ">HOME</button></a>
     <a href="home.php #讓我看看餐廳" class="w3-bar-item w3-button"><button class="w3-button  ">讓我看看餐廳</button></a>
-    <a href="score.php" class="w3-bar-item w3-button"> <button class="w3-button">心得評論</button></a>
+	<a href="update_menu.php" class="w3-bar-item w3-button mlogin"> <button class="w3-button mlogin">修改菜單</button></a>
+    <a href="score.php" class="w3-bar-item w3-button elogin"> <button class="w3-button elogin">心得評論</button></a>
+	
 	<div class="w3-dropdown-hover w3-right">
+	<a href="login.php" class="w3-bar-item w3-button login"> <button class="w3-button login">登入</button></a>
 	<label style="margin-top:10px;"class ="w3-bar-item logout" id ="name"> </label>
+	<a href="logout.php" onclick="logout();" class="w3-bar-item w3-button logout"> <button class="w3-button logout">登出</button></a>
     </div>
   </div>
 </div>
@@ -39,102 +79,14 @@ $dbname = "group9_db";
 $conn = new mysqli($servername, $username, $password, $dbname);
 mysqli_query($conn, "SET NAMES 'UTF8'");
 
-if(isset($_POST['101'])){
-	$mrid = 101;
+for($i=101; $i<400; $i++)
+{
+	if(isset($_POST[$i])){
+		$mrid = $i;
+	}
 }
-if(isset($_POST['102'])){
-	$mrid = 102;
-}
-if(isset($_POST['103'])){
-	$mrid = 103;
-}
-if(isset($_POST['104'])){
-	$mrid = 104;
-}
-if(isset($_POST['105'])){
-	$mrid = 105;
-}
-if(isset($_POST['106'])){
-	$mrid = 106;
-}
-if(isset($_POST['201'])){
-	$mrid = 201;
-}
-if(isset($_POST['202'])){
-	$mrid = 202;
-}
-if(isset($_POST['203'])){
-	$mrid = 203;
-}
-if(isset($_POST['204'])){
-	$mrid = 204;
-}
-if(isset($_POST['205'])){
-	$mrid = 205;
-}
-if(isset($_POST['206'])){
-	$mrid = 206;
-}
-if(isset($_POST['207'])){
-	$mrid = 207;
-}
-if(isset($_POST['208'])){
-	$mrid = 208;
-}
-if(isset($_POST['209'])){
-	$mrid = 209;
-}
-if(isset($_POST['210'])){
-	$mrid = 210;
-}
-if(isset($_POST['211'])){
-	$mrid = 211;
-}
-if(isset($_POST['212'])){
-	$mrid = 212;
-}
-if(isset($_POST['213'])){
-	$mrid = 213;
-}
-if(isset($_POST['214'])){
-	$mrid = 214;
-}
-if(isset($_POST['215'])){
-	$mrid = 215;
-}
-if(isset($_POST['301'])){
-	$mrid = 301;
-}
-if(isset($_POST['302'])){
-	$mrid = 302;
-}
-if(isset($_POST['303'])){
-	$mrid = 303;
-}
-if(isset($_POST['304'])){
-	$mrid = 304;
-}
-if(isset($_POST['305'])){
-	$mrid = 305;
-}
-if(isset($_POST['306'])){
-	$mrid = 306;
-}
-if(isset($_POST['307'])){
-	$mrid = 307;
-}
-if(isset($_POST['308'])){
-	$mrid = 308;
-}
-if(isset($_POST['309'])){
-	$mrid = 309;
-}
-if(isset($_POST['310'])){
-	$mrid = 310;
-}
-if(isset($_POST['311'])){
-	$mrid = 311;
-}
+
+
 		$sql = @"SELECT * FROM menu WHERE mrid='$mrid'";
 		$result = $conn->query($sql);
 		$query = mysqli_query($conn, $sql);
