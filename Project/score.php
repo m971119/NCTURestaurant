@@ -2,61 +2,69 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="login_styles.css">
+<style>
+h3{
+	font-family:Bahnschrift SemiBold,Courier,微軟正黑體;
+	text-align:right;
+	margin-right:50px;
+}
 
+</style>
 </head>
 
 <body style="background-color:black;">
-
+<?php
+	//啟動session	
+	session_start();
+	//讀取session變數
+	$acc = $_SESSION['account'];
+?>
 
 <div>
 <h1>評分留言</h1>
 	<form  onsubmit="return checkform()" action="score_submit.php" method="post" name="scoreform">
 		<p><span class="error">* required field</span></p>
 			
-			<label>帳號:</label><span class="error">* </span><br>
-			<input type="text" name="eacc"> 
-			<!--
-			-->
-			<br>
+			<?php echo"<h3>▶ 顧客帳號： <span class=\"error\">$acc </span></h3>"; ?>
 
-			<label>評分餐廳: </label><span class="error">*</span><br>
-			
-			<label class="radio"><input type="radio" name="srid" value="101">  非羹不可</label>
-			<label class="radio"><input type="radio" name="srid" value="102">  好食佳餐房</label>
-			<label class="radio"><input type="radio" name="srid" value="103">  隆太郎名廚燒臘</label>
-			<label class="radio"><input type="radio" name="srid" value="104">  陳隆滷味</label>
-			<label class="radio"><input type="radio" name="srid" value="105">  華記快餐</label>
-			<label class="radio"><input type="radio" name="srid" value="106">  萊爾富便利店</label>
-			<label class="radio"><input type="radio" name="srid" value="201">  7-11</label>
-			<label class="radio"><input type="radio" name="srid" value="202">  中式早餐</label>
-			<label class="radio"><input type="radio" name="srid" value="203">  自助餐</label>
-			<label class="radio"><input type="radio" name="srid" value="204">  米克Q</label>
-			<label class="radio"><input type="radio" name="srid" value="205">  紅鼎香滷味燙</label>
-			<label class="radio"><input type="radio" name="srid" value="206">  姊妹飯桶</label>
-			<label class="radio"><input type="radio" name="srid" value="207">  MorningHouse</label>
-			<label class="radio"><input type="radio" name="srid" value="208">  八方雲集</label>
-			<label class="radio"><input type="radio" name="srid" value="209">  漢城烤肉飯</label>
-			<label class="radio"><input type="radio" name="srid" value="210">  和風風味屋</label>
-			<label class="radio"><input type="radio" name="srid" value="211">  素食部</label>
-			<label class="radio"><input type="radio" name="srid" value="212">  水果部</label>
-			<label class="radio"><input type="radio" name="srid" value="213">  快餐麵食部</label>
-			<label class="radio"><input type="radio" name="srid" value="214">  多多咖啡廳</label>
-			<label class="radio"><input type="radio" name="srid" value="215">  教職員工自助餐</label>
-			<br>
-			<label>評分:</label><span class="error">* </span><br>
+			<label class="word">。評分餐廳： </label><br>
+			<?php 
+			include ("Project_connMySQL.php");
+			$sql ="SELECT rid,rname FROM restaurant";
+			$result = $conn->query($sql);
+			if($result->num_rows > 0){
+				//echo "<h2>拿到資料</h2>";
+				while($row = $result->fetch_row()){//fetch_assoc():把傳出的資料分割好放入row這個array中
+					  //localStorage帳號名稱及密碼
+					  $rnum = $row[0];
+					  $name = $row[1];
+					  //console.log('rnum = '+rnum+' name = '+name);
+
+					  //$link="restaurant_info.php";
+					echo "
+					  <label class=\"radio\"><input type=\"radio\" name=srid class=\"button1\" value=\"$rnum\">$name</label>
+						";
+				}
+			}
+			else{
+			  echo "<h2>資料庫連接失敗</h2>";
+			}			
+			?>
+			<br><br>
+			<label class="word">。評分:</label><span class="error">* </span><br>
 			<label class="radio"><input type="radio" name="srate" value="1">  1</label>
 			<label class="radio"><input type="radio" name="srate" value="2">  2</label>
 			<label class="radio"><input type="radio" name="srate" value="3">  3</label>
 			<label class="radio"><input type="radio" name="srate" value="4">  4</label>
 			<label class="radio"><input type="radio" name="srate" value="5">  5</label>
 			
-			<br>
-			<label>留言:</label><span class="error">* </span><br>
+			<br><br>
+			<label class="word">。留言:</label><span class="error">* </span><br>
 			<input type="text" name="sdetail">
 			<br>
 			
 			<br>
-			<input type="submit">
+			<input type="submit" value="評分">
 	</form>
 </div>
 <script>
@@ -64,13 +72,8 @@
 		//evt.preventDefault();
 		var myForm = document.scoreform;
 		var condition = true;
-		
-		if(myForm.eacc.value==""){
-			alert("請輸入帳號");
-			myForm.eacc.focus();
-			condition = false;
-		}
-		else if(myForm.srid.value==""){
+
+		if(myForm.srid.value==""){
 			alert("請選擇評分餐廳");
 			myForm.srid.focus();
 			condition = false;

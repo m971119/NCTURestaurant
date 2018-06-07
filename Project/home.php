@@ -19,16 +19,30 @@
 	//顯示登入與否
 	$(document).ready(function(){
 		var eacc = localStorage.getItem('eacc');
+		var emngr = localStorage.getItem('emngr');
 		console.log('eacc='+eacc);
-		console.log('hi');
+		console.log('emngr='+emngr);
+		
 		if(eacc != "" && eacc != null){//登入中
 			document.getElementById("name").innerHTML = "Hello, "+eacc+"!";
 			$(".login").hide();		
-			$(".logout").show();		
+			$(".logout").show();
+			if(emngr == 0){
+				$(".elogin").show();
+				$(".mlogin").hide();
+			}
+			else{
+				$(".elogin").hide();
+				$(".mlogin").show();
+			}
+				
+			
 		}
 		else{//沒登入
 			$(".login").show();
 			$(".logout").hide();
+			$(".elogin").hide();
+			$(".mlogin").hide();
 		}
 	});
 	
@@ -42,12 +56,14 @@
 <div class="w3-top w3-hide-small">
   <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
     <a href="#" class="w3-bar-item w3-button"><button class="w3-button  ">HOME</button></a>
-    <a href="#讓我看看餐廳" class="w3-bar-item w3-button"><button class="w3-button  ">讓我看看餐廳</button></a>
-    <a href="score.php" class="w3-bar-item w3-button"> <button class="w3-button">心得評論</button></a>
+    <a href="#讓我看看餐廳" class="w3-bar-item w3-button"><button class="w3-button">讓我看看餐廳</button></a>
+	<a href="update_menu.php" class="w3-bar-item w3-button mlogin"> <button class="w3-button mlogin">修改菜單</button></a>
+    <a href="score.php" class="w3-bar-item w3-button elogin"> <button class="w3-button elogin">心得評論</button></a>
+	
 	<div class="w3-dropdown-hover w3-right">
-    <a href="login.php" class="w3-bar-item w3-button login"> <button class="w3-button">登入</button></a>
+    <a href="login.php" class="w3-bar-item w3-button login"> <button class="w3-button login">登入</button></a>
 	<label style="margin-top:10px;"class ="w3-bar-item logout" id ="name"> </label>
-	<a href="home.php" onclick="logout();" class="w3-bar-item w3-button logout"> <button class="w3-button  ">登出</button></a>
+	<a href="logout.php" onclick="logout();" class="w3-bar-item w3-button logout"> <button class="w3-button logout">登出</button></a>
     </div>
   </div>
 </div>
@@ -91,13 +107,7 @@
 		
 	<form action="info2.php" method="post">
 	<?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "1234";
-    $dbname = "group9_db";
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    mysqli_query($conn, "SET NAMES 'UTF8'");
+    include ("Project_connMySQL.php");
 
     $sql ="SELECT rid,rname FROM restaurant WHERE rlocate=1";
     $result = $conn->query($sql);
@@ -143,13 +153,7 @@
 <div id="二餐" class="w3-container 讓我看看餐廳 w3-padding-32 w3-white">
 	<form action="info2.php" method="post">
   <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "1234";
-    $dbname = "group9_db";
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    mysqli_query($conn, "SET NAMES 'UTF8'");
+    
 
     $sql ="SELECT rid,rname FROM restaurant WHERE rlocate=2";
     $result = $conn->query($sql);
@@ -197,13 +201,7 @@
 <div id="女二" class="w3-container 讓我看看餐廳 w3-padding-32 w3-white">
 	<form action="info2.php" method="post">
   <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "1234";
-    $dbname = "group9_db";
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    mysqli_query($conn, "SET NAMES 'UTF8'");
+    
 
     $sql ="SELECT rid,rname FROM restaurant WHERE rlocate=3";
     $result = $conn->query($sql);

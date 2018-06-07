@@ -4,13 +4,32 @@
 <?php
 //REGISTER
         include ("Project_connMySQL.php");
+		//記得啟動session		
 		session_start();
         $eacc = $_SESSION['account'];
-		$srid = $_POST['srid'];
-		$srate = $_POST['srate'];
-		$sdetail = $_POST['sdetail'];
+		$mid = $_POST['mid'];//meal菜 id
+		$mprice = $_POST['mprice'];//修改後的價錢
+		$mintro = $_POST['mintro'];//修改後的簡介
+		$mcal = $_POST['mcal'];//修改後的卡路里
 		
-		$sql ="SELECT eid FROM employee WHERE eacc = '$eacc'"; 
+		if($mprice != null){
+			$sql1 = " UPDATE menu SET mprice='$mprice' WHERE mid='$mid' ";
+			$result1 = $conn->query($sql1);
+			if($result1)
+				echo"
+			成功更新價格:
+			";
+		}
+		if($mintro != null){
+			$sql2 = " UPDATE menu SET mintro='$mintro' WHERE mid='$mid' ";
+			$result2 = $conn->query($sql2);
+		}
+		if($mcal != null){
+			$sql3 = " UPDATE menu SET mcal='$mcal' WHERE mid='$mid' ";
+			$result3 = $conn->query($sql3);
+		}
+		
+		$sql ="UPDATE menu SET"; 
 		$result=$conn->query($sql);
 		//$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);

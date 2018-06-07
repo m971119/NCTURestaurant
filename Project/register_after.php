@@ -41,7 +41,7 @@
 				
 				
 				
-				$link="Project_home.html";
+				$link="home.php";
 				echo "
 				<label>恭喜註冊成功!<br></label>
 				<ul>
