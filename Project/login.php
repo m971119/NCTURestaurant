@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="login_styles.css">
 </head>
 
-<body style="background-color:black;">
+<body style="background-color:black;margin: 50px 400px 50px 400px;">
 
 <script>
 

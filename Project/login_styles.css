@@ -7,6 +7,7 @@
 	font-size:20px;
 	color:1f3d7a;
 }
+
 .update{
 	font-size:30px;
 }
@@ -21,6 +22,13 @@ body{
 	font-family: "微軟正黑體";
 	font-size:18px;
  }
+ .mname{
+	font-family: "微軟正黑體";
+	font-size:45px;
+	color:black;
+	text-align:right;
+	padding-left:20px;
+}
 .radio{
 	font-family: Bahnschrift SemiBold,微軟正黑體;
 	font-size:18px;
@@ -35,7 +43,7 @@ h2{
 	text-align:center;
 }
 
-input[type=text],input[type=password],input[type="number"], select {
+input[type=text],input[type=password],input[type="number"],input[type=tel], select {
     width: 100%;
     padding: 12px 10px;
     margin: 5px 0;
@@ -46,6 +54,7 @@ input[type=text],input[type=password],input[type="number"], select {
 	font-family:微軟正黑體;
 	font-size:20px;
 }
+
 input[type="radio"]{
 	font-size:40px;
 }
@@ -58,17 +67,17 @@ input[type=submit],button {
     background-color: #5c8a8a;
     color: white;
     padding: 15px 10px;
-    margin: 5px 0;
+    margin: 10px 0;
     border: none;
-    border-radius: 1px;
+    border-radius: 10px;
     cursor: pointer;
 }
 input[type=submit]:hover,button:hover {
     background-color: #75a3a3;
 }
-
 div {
-    border-radius:50px;
+    border-radius: 50px;
     background-color: #f2f2f2;
-    padding: 30px;
+    padding: 20px;
 }
+

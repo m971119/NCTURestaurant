@@ -1,6 +1,11 @@
+<html>
 <head>
+<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="login_styles.css">
 </head>
+<body style="background-color:black;">
+
+<div>
 <?php
 //REGISTER
         include ("Project_connMySQL.php");
@@ -115,4 +120,6 @@
 </table>
 
 <button onclick="location.href = 'home.php';" id="myButton" class="float-left submit-button" >回到首頁 Back to Home Page</button>
-
+</div>
+</body>
+</html>
