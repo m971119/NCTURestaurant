@@ -28,7 +28,7 @@ h3{
 ?>
 
 <div>
-<?php echo"<h1>【 $rname 】 <label class=\"update\">修改菜單</label></h1>";?>
+<?php echo"<h1>【 $rname 】 <label class=\"update\">菜單新增</label></h1>";?>
 	<form  onsubmit="return checkform()" action="update_submit.php" method="post" name="updateform">
 			
 		<?php 

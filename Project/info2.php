@@ -10,6 +10,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<style>
+.margin{
+	margin-left:40px;
+	margin-right:40px;
+	border-style: solid;
+	border-color:grey;
+	border-width:1px;
+}
+.chinese{
+	font-family: "微軟正黑體";
+}
+</style>
 </head>
 
 <body>
@@ -56,7 +70,8 @@
     <a href="home.php" class="w3-bar-item w3-button"><button class="w3-button  ">HOME</button></a>
     <a href="home.php #讓我看看餐廳" class="w3-bar-item w3-button"><button class="w3-button  ">讓我看看餐廳</button></a>
 	<a href="update_menu.php" class="w3-bar-item w3-button mlogin"> <button class="w3-button mlogin">修改菜單</button></a>
-    <a href="score.php" class="w3-bar-item w3-button elogin"> <button class="w3-button elogin">心得評論</button></a>
+    <a href="insert_menu.php" class="w3-bar-item w3-button mlogin"> <button class="w3-button mlogin">新增菜單</button></a>
+	<a href="score.php" class="w3-bar-item w3-button elogin"> <button class="w3-button elogin">心得評論</button></a>
 	
 	<div class="w3-dropdown-hover w3-right">
 	<a href="login.php" class="w3-bar-item w3-button login"> <button class="w3-button login">登入</button></a>
@@ -68,8 +83,7 @@
 
 <!-- 詳細內容 Container -->
 <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="詳細內容">
-  <div class="w3-content"></div>
-  
+<div class="chinese">
 <?php
 $servername = "localhost";
 $username = "root";
@@ -116,8 +130,8 @@ for($i=101; $i<400; $i++)
 		$rname = $row["rname"];	
 	echo"<h1 class=\"w3-center w3-jumbo\" style=\"margin-bottom:32px\">$rname</h1>";
 ?>
-
-    <div class="w3-row w3-center w3-border w3-border-dark-grey">
+<div class="margin">
+    <div class="w3-row w3-center">
       <a href="javascript:void(0)" onclick="open詳細內容(event, '菜單');" id="myLink">
         <div class="w3-col s6 tablink w3-padding-large w3-black w3-hover-teal">菜單</div>
       </a>
@@ -218,8 +232,8 @@ for($i=101; $i<400; $i++)
 		<?php
 		}
 		?>
-		
-		
+	</div>
+	</div>
 	</div>
 
 	

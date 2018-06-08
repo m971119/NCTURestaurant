@@ -1,6 +1,28 @@
+<html>
 <head>
-<link rel="stylesheet" type="text/css" href="login_styles.css">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="login_styles.css">
+<style>
+h3{
+	font-family:Bahnschrift SemiBold,Courier,微軟正黑體;
+	text-align:right;
+	margin-right:50px;
+}
+.word2{
+	font-family: "微軟正黑體";
+	font-size:35px;
+	color:1f3d7a;
+	text-align:left;
+	padding-left:80px;
+}
+
+</style>
 </head>
+
+<body style="background-color:black; margin: 50px 300px 50px 300px;">
+
+<div style="padding:40px;">
+
 <?php
 //REGISTER
         include ("Project_connMySQL.php");
@@ -11,127 +33,55 @@
 		$mprice = $_POST['mprice'];//修改後的價錢
 		$mintro = $_POST['mintro'];//修改後的簡介
 		$mcal = $_POST['mcal'];//修改後的卡路里
+		//取餐廳名稱
+		$sql ="SELECT rname FROM restaurant,menu where mid='$mid' AND rid=mrid";
+		$result=$conn->query($sql);
+		$row = mysqli_fetch_assoc($result);
+		$rname = $row["rname"];
+		//取更新的菜名稱
+		$sql ="SELECT mname FROM menu where mid='$mid'";
+		$result=$conn->query($sql);
+		$row = mysqli_fetch_assoc($result);
+		$mname = $row["mname"];
 		
-		if($mprice != null){
+		echo"
+			<h1>【 $rname 】 <label class=\"update\">菜單修改成功！</label></h1>
+			<label class=\"mname\">• $mname •</label>
+			";
+		
+		if(!(empty($mprice))){
 			$sql1 = " UPDATE menu SET mprice='$mprice' WHERE mid='$mid' ";
 			$result1 = $conn->query($sql1);
 			if($result1)
 				echo"
-			成功更新價格:
+			<label class=\"word2\"> <br>✔ 成功更新價格： <span class=\"error\">NT $mprice </span></label>
 			";
 		}
-		if($mintro != null){
+		if(!(empty($mintro))){
 			$sql2 = " UPDATE menu SET mintro='$mintro' WHERE mid='$mid' ";
 			$result2 = $conn->query($sql2);
+			if($result2)
+				echo"
+			<label class=\"word2\"> <br>✔ 成功更新介紹： <span class=\"error\"> $mintro </span></label>
+			";
 		}
-		if($mcal != null){
+		if(!(empty($mcal))){
 			$sql3 = " UPDATE menu SET mcal='$mcal' WHERE mid='$mid' ";
 			$result3 = $conn->query($sql3);
+			if($result3)
+				echo"
+			<label class=\"word2\"> <br>✔ 成功更新卡路里： <span class=\"error\"> $mcal 大卡</span></label>
+			";
 		}
 		
-		$sql ="UPDATE menu SET"; 
-		$result=$conn->query($sql);
-		//$result = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_assoc($result);
-		//echo "Result: " . $row['eid'];
-		$eid = $row["eid"];
-		$seid = $eid; //seid=rid
-		//echo "seid=: $seid";
-		
-		$sql2 ="SELECT rname FROM restaurant WHERE rid = '$srid'"; 
-		$result2=$conn->query($sql2);
-		$row = mysqli_fetch_assoc($result2);
-		$rname = $row["rname"];
-		
-		
+		$link="home.php";
+		echo"
+		<br><br><a href='".$link."'><button>回到首頁</button></a>
+		";
+	?>
 
-		if(!(empty($eacc)||empty($srid)||empty($srate))){
-					$sql = "INSERT INTO `score`(`seacc`, `seid`, `srid`, `srate`,`sdetail`,`stime`  ) VALUES ('$eacc','$seid','$srid','$srate','$sdetail', CURTIME())";
-					$result=$conn->query($sql);
-				
-					/*
-					echo"<p align='center'><font color=white>Submit Success留言評分成功</font></p>";
-					echo"<p>User account: $eacc </p>";
-					echo"<p>User id: $seid </p>";
-					echo"<p>Restaurant id: $srid</p>";
-					echo"<p>Restaurant Name: $rname</p>";
-					echo"<p>Rate: $srate </p>";
-					echo"<p>Detail: $sdetail </p>";
-					*/
-					echo"<h2 align=center><font color=white>以下為$eacc 本次對 $rname 的留言評論 </font></h2>";
-        }else{
-			echo "<p align='center'> <font color=red  size='10pt'>未成功留言評論，請重新輸入</font> </p>";
 
-        }
-	
-	
-		$sql01 = "SELECT * FROM score WHERE sid = (SELECT MAX(sid) FROM score WHERE seacc = '$eacc')";
-		$result01 = $conn->query($sql01);
-		$query01 = mysqli_query($conn, $sql01);
-		
-		$sql02 = "SELECT AVG(srate) FROM score WHERE srid='$srid'";
-		$result02 = $conn->query($sql02);
-		$query02 = mysqli_query($conn, $sql02);
+</div>
 
-?>
-
-<body style="background-color:black;">
-<table border="1" style="font-size:30px; background-color:#66b3ff; text-align:center; color:white;" align="center">
-<p>
-
-</p>
-
-   <tr>
-   <!--
-    <td >編號</td>-->
-    <td >留言者</td>
-	<!--
-    <td >留言者id</td>
-    <td >餐廳id</td>-->
-    <td >評分</td>
-    <td >評分日期</td>
-	<td >留言內容</td>
-
-  </tr>
-<?php
-   while($rs = mysqli_fetch_array($query01)) {
-   ?>
-
-  <tr>
-  <!--
-    <td><?php echo $rs[0]?></td>-->
-    <td><?php echo $rs[1]?></td>
-	<!--
-    <td><?php echo $rs[2]?></td>
-    <td><?php echo $rs[3]?></td>-->
-    <td><?php echo $rs[4]?></td>
-    <td><?php echo $rs[5]?></td>
-	<td><?php echo $rs[6]?></td>
-
-  </tr>
-  
-  <?php
-}
-?>
-<?php
-   while($rs = mysqli_fetch_array($query02)) {
-   ?>
-<!--
-  <tr>
-
-  <td><?php echo "平均分數："?></td>
-  <td><?php echo $rs[0]?></td>
-  <td><?php echo " "?></td>
-  <td><?php echo " "?></td>   
-
-  </tr>
-  -->
-  <?php
-}
-?>
-<table>
-
-</table>
-
-<button onclick="location.href = 'home.php';" id="myButton" class="float-left submit-button" >回到首頁 Back to Home Page</button>
-
+</body>
+</html>
