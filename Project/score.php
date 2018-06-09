@@ -34,17 +34,26 @@ h3{
 			$result = $conn->query($sql);
 			if($result->num_rows > 0){
 				//echo "<h2>拿到資料</h2>";
+				echo"<select name='srid' id='srid'>";
 				while($row = $result->fetch_row()){//fetch_assoc():把傳出的資料分割好放入row這個array中
 					  //localStorage帳號名稱及密碼
-					  $rnum = $row[0];
+					  $srid = $row[0];
 					  $name = $row[1];
 					  //console.log('rnum = '+rnum+' name = '+name);
 
 					  //$link="restaurant_info.php";
-					echo "
-					  <label class=\"radio\"><input type=\"radio\" name=srid class=\"button1\" value=\"$rnum\">$name</label>
-						";
+					//<option value='".$row[0]."'>".$row[1]."</option>
+					//<option value='$srid' name='$srid'>".$row[1]."</option>
+					 echo "
+					 <option value='$srid'>$name</option>
+					 ";
+					 
+					/*
+					"<label class=\"radio\"><input type=\"radio\" name=srid class=\"button1\" value=\"$rnum\">$name</label>";
+					<label class="radio"><input type="radio" name="srid" value="101">  非羹不可</label>
+					*/
 				}
+				echo"</select>";
 			}
 			else{
 			  echo "<h2>資料庫連接失敗</h2>";
@@ -65,7 +74,9 @@ h3{
 			
 			<br>
 			<input type="submit" value="評分">
+			
 	</form>
+	<button onclick="location.href = 'home.php';" id="myButton" class="float-left submit-button" >回到首頁 Back to Home Page</button>
 </div>
 <script>
 	function checkform(){
