@@ -74,6 +74,7 @@ h3{
 			<br>
 			<input type="submit" value="確認修改">
 	</form>
+	<a href="home.php"><button>回到首頁</button></a>
 </div>
 <script>
 	function checkform(){
