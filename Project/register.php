@@ -110,7 +110,7 @@
 </select>
 </div>
 			<input type="submit" value="註冊">
-			<p  align="center">or</p>
+			<!--<p  align="center">or</p>-->
 	</form>
 	<a href="home.php"><button>回到首頁</button></a>
 </div>
